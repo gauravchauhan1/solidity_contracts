@@ -45,3 +45,45 @@ uint256 public peopleCount=0;
 }
 
 */
+
+
+///creating own custom modifier for the visiblity and usage of a function
+
+/*
+
+ pragma solidity 0.8.0;
+
+
+
+contract MyContract{
+
+mapping(uint => Person) public people;
+uint256 public peopleCount=0;
+address owner;
+
+modifier onlyOwner(){
+     require(msg.sender == owner);   ///if this is false it will throw an error
+     _;     
+}
+
+  struct Person{
+      uint _id;
+      string _firstName;
+      string _lastName;
+  }
+  
+  constructor() public{
+      owner = msg.sender;  ///msg.sender is the account address that deploys the contract
+  }
+  
+  function addPerson(string memory _firstName,string memory _lastName) public onlyOwner{
+      
+     incrementCount();
+      people[peopleCount]= Person(peopleCount,_firstName,_lastName);
+  }
+    
+   function incrementCount() internal{
+       peopleCount +=1;
+   } 
+ 
+}
