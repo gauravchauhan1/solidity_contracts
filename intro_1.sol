@@ -127,3 +127,42 @@ modifier onlyWhileOpen(){
 }
 
 */
+
+///contract that can send ehter and check your wallet balance and emit the transaction to all the people in the blockchain
+
+/*
+
+pragma solidity 0.5.1;
+
+
+
+contract MyContract{
+    mapping(address =>uint256) public balances;
+    address payable wallet;
+    
+    event purchase(
+        address _buyer,
+        uint256 _mount);
+    constructor(address payable _wallet) public{
+        wallet = _wallet;
+    }
+    
+    //payable is needed in function for ether transcations 
+    
+    function() external payable{
+        buyToken();
+        //external can only be called outside
+    }
+    function buyToken() public payable{
+        ///buy a token  
+        balances[msg.sender] += 1;
+        wallet.transfer(msg.value);
+        ///send ether to wallet
+        emit purchase(msg.sender,1);
+        
+        
+    }
+ 
+}
+ */
+ 
