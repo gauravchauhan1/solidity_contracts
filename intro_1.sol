@@ -87,3 +87,43 @@ modifier onlyOwner(){
    } 
  
 }
+
+///creating a time checking modifier which will let function execute only when certain time has passed
+/*
+
+ pragma solidity 0.8.0;
+
+
+
+contract MyContract{
+
+mapping(uint => Person) public people;
+uint256 public peopleCount=0;
+
+uint256 openingTime = 1609231400;
+
+modifier onlyWhileOpen(){
+     require(block.timestamp >= openingTime);   ///if this is false it will throw an error
+     _;     
+}
+
+  struct Person{
+      uint _id;
+      string _firstName;
+      string _lastName;
+  }
+  
+  
+  function addPerson(string memory _firstName,string memory _lastName) public onlyWhileOpen{
+      
+     incrementCount();
+      people[peopleCount]= Person(peopleCount,_firstName,_lastName);
+  }
+    
+   function incrementCount() internal{
+       peopleCount +=1;
+   } 
+ 
+}
+
+*/
